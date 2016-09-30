@@ -1,7 +1,19 @@
 var should = require('chai').should(),
-		scapegoat = require('../index'),
-		escape = scapegoat.escape,
-		unescape = scapegoat.unescape;
+		commando = require('../index'),
+		config = commando.config,
+		escape = commando.escape,
+		unescape = commando.unescape;
+
+describe('#config', function() {
+	it('gets the default alias', function() {
+		config().alias.should.equal(process.env.COMMANDO_ALIAS || 'your-account-alias');
+	});
+
+	it('gets the default secret', function() {
+		config().secret.should.equal(process.env.COMMANDO_SECRET ||'your-secret-key');
+	});	
+
+});
 
 describe('#escape', function() {
 	it('converts & into &amp;', function() {

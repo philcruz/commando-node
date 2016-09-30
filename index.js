@@ -4,7 +4,23 @@
  * @param  {String} html
  * @return {String}
  */
+
+ // If undefined in our process load our local file
+ // (i.e. we aren't on an external server where we set these differently)
+ if(!process.env.FOO) {
+	 var env = require('./config.js')
+ }
+
+
 module.exports = {
+
+	config: function() {
+		return {
+			"alias" : process.env.COMMANDO_ALIAS || "your-account-alias",
+			"secret" : process.env.COMMANDO_SECRET || "your-secret-key"
+		};
+	},
+
 	escape: function(html) {
 		return String(html)
 			.replace(/&/g, '&amp;')

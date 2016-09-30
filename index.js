@@ -21,6 +21,13 @@ module.exports = {
 		};
 	},
 
+	about: function() {
+		return {
+			"version" : "v1",
+			"description" : "Commando.io API"
+		};
+	},
+
 	escape: function(html) {
 		return String(html)
 			.replace(/&/g, '&amp;')

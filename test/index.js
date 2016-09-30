@@ -1,5 +1,6 @@
 var should = require('chai').should(),
 		commando = require('../index'),
+		about = commando.about,
 		config = commando.config,
 		escape = commando.escape,
 		unescape = commando.unescape;
@@ -11,7 +12,18 @@ describe('#config', function() {
 
 	it('gets the default secret', function() {
 		config().secret.should.equal(process.env.COMMANDO_SECRET ||'your-secret-key');
-	});	
+	});
+
+});
+
+describe('#about', function() {
+	it('gets the API version', function() {
+		about().version.should.equal("v1");
+	});
+
+	it('gets API description', function() {
+		about().description.should.equal('Commando.io API');
+	});
 
 });
 

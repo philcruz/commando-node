@@ -1,0 +1,19 @@
+{
+	"name": "commando-node",
+	"version": "0.0.1",
+	"description": "A Commando.io API library for Node.js",
+	"main": "index.js",
+	"scripts": {
+		"test": "make test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/philcruz/commando-node.git"
+	},
+	"author": "Phil Cruz <phil@philcruz.com> (http://philcruz.com)",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/philcruz/commando-node/issues"
+	},
+	"homepage": "https://github.com/philcruz/commando-node#readme"
+}

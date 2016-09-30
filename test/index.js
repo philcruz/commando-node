@@ -1,4 +1,5 @@
 var should = require('chai').should(),
+		assert = require('chai').assert,
 		commando = require('../index'),
 		about = commando.about,
 		config = commando.config,
@@ -17,12 +18,26 @@ describe('#config', function() {
 });
 
 describe('#about', function() {
-	it('gets the API version', function() {
-		about().version.should.equal("v1");
-	});
 
-	it('gets API description', function() {
-		about().description.should.equal('Commando.io API');
+	it('should get the API version', function(done) { // added "done" as parameter
+		console.log('about...');
+		assert.doesNotThrow(function() {
+			about(function(res) {
+				var body = '';
+				res.on('data', function(chunk){
+					bode += chunk;
+				});
+
+				res.on('end', function(){
+					var fbResponse = JSON.parse(body);
+					var version = Object.keys(fbResponse);
+					console.log(version);
+				});
+				var version = Object.keys(res);
+				assert.equal(version, '72.214.58.73'); // will not fail assert.doesNotThrow
+				done(); // call "done()" the parameter
+			}, done);
+		});
 	});
 
 });

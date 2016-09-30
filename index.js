@@ -11,6 +11,7 @@
 	 var env = require('./config.js')
  }
 
+var https = require('https');
 
 module.exports = {
 
@@ -21,11 +22,22 @@ module.exports = {
 		};
 	},
 
-	about: function() {
-		return {
+	about: function(callback) {
+		//var auth = config().alias + ":" + config().secret;
+		var auth = process.env.COMMANDO_ALIAS + ":" + process.env.COMMANDO_SECRET;
+		console.log(auth);
+		var options = {
+			host: 'api.ipify.org',
+			port: 443,
+			path: '/?format=json',
+			method: 'GET'
+		};
+		var request = https.request( options, callback);
+		request.end();
+		/*return {
 			"version" : "v1",
 			"description" : "Commando.io API"
-		};
+		};*/
 	},
 
 	escape: function(html) {

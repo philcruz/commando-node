@@ -9,16 +9,16 @@ A Commando.io API library for Node.js
 
 ## API Overview
 
-	Every resource is accessed via your `commando` instance:
+Every resource is accessed via your `commando` instance:
 
-	```js
-	var commando = require('commando')(' your commando API key ');
-	// commando.{ RESOURCE_NAME }.{ METHOD_NAME }
-	```
+```js
+var commando = require('commando')(' your commando API key ');
+// commando.{ RESOURCE_NAME }.{ METHOD_NAME }
+```
 
-	Every resource method accepts an optional callback as the last argument:
+Every resource method accepts an optional callback as the last argument:
 
-	```js
+```js
 	commando.servers.retrieve(
 		{ id: 'srv_9GkE2IWvkzItmaTs5Agn8' },
 		function(err, server) {
@@ -26,7 +26,7 @@ A Commando.io API library for Node.js
 			server; // the server object
 		}
 	);
-	```
+```
 
 ### Available resources & methods
 

@@ -7,18 +7,26 @@ A Commando.io API library for Node.js
 
 	npm install commando-node --save
 
-## Usage
+	## API Overview
 
-	var commando = require('commando-node')
-		escape = commando.escape,
-		unescape = commando.unescape;
+	Every resource is accessed via your `commando` instance:
 
-	var html = '<h1>Hello World</h1>',
-		escaped = escape(html),
-		unescaped = unescape(escaped);
+	```js
+	var commando = require('commando')(' your commando API key ');
+	// commando.{ RESOURCE_NAME }.{ METHOD_NAME }
+	```
 
-	console.log('html', html, 'escaped', escaped, 'unescaped', unescaped);
+	Every resource method accepts an optional callback as the last argument:
 
+	```js
+	commando.servers.retrieve(
+		{ id: 'srv_9GkE2IWvkzItmaTs5Agn8' },
+		function(err, server) {
+			err; // null if no error occurred
+			server; // the server object
+		}
+	);
+	```
 
 ### Available resources & methods
 
@@ -33,7 +41,7 @@ A Commando.io API library for Node.js
 * recipes
 	* [`list([params])`]
 	* [`retrieve(recipeId)`]
-	* [`execute(recipeId)`]	
+	* [`execute(recipeId)`]
 
 
 ## Tests

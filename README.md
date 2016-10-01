@@ -19,6 +19,23 @@ A Commando.io API library for Node.js
 
 	console.log('html', html, 'escaped', escaped, 'unescaped', unescaped);
 
+
+### Available resources & methods
+
+*Where you see `params` it is a plain JavaScript object, e.g. `{ email: 'foo@example.com' }`*
+
+* servers
+	* [`list([params])`]
+	* [`retrieve(serverId)`]
+* groups
+	* [`list([params])`]
+	* [`retrieve(groupId)`]
+* recipes
+	* [`list([params])`]
+	* [`retrieve(recipeId)`]
+	* [`execute(recipeId)`]	
+
+
 ## Tests
 
 	npm test

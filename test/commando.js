@@ -4,8 +4,6 @@ var testUtils = require('./testUtils');
 var should = require('chai').should();
 var	assert = require('chai').assert;
 var	commando = require('../lib/commando')(testUtils.getAlias(), testUtils.getSecret());
-var	escape = commando.escape;
-var	unescape = commando.unescape;
 
 describe('#config', function() {
 	it('gets the default alias', function() {
@@ -29,7 +27,7 @@ describe('#servers', function() {
 				});
 
 				res.on('end', function(){
-					console.log(body);
+					//console.log(body);
 					var data = JSON.parse(body);
 					assert.equal(data.length, 2);
 					done();
@@ -39,27 +37,23 @@ describe('#servers', function() {
 		});
 	});
 
-	it('should get the servers about', function(done) {
+	it('should get the server info', function(done) {
 		assert.doesNotThrow(function() {
-			commando.servers.about(function(res) {
+			commando.servers.retrieve('srv_2vhZl57daf0e630261sHn', function(res) {
 				var body = '';
 				res.on('data', function(chunk){
 					body += chunk;
 				});
 
 				res.on('end', function(){
-					console.log(body);
+					//console.log(body);
 					var data = JSON.parse(body);
-					assert.equal(data.version,'v1');
+					assert.equal(data.label,'WEB1');
 					done();
 				});
 
 			}, done);
 		});
-	});
-
-	it('gets the server info', function() {
-		commando.servers.list('foo').should.equal('api.commando.io');
 	});
 
 });

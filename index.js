@@ -23,13 +23,15 @@ module.exports = {
 	},
 
 	about: function(callback) {
+		console.log('about():');
 		//var auth = config().alias + ":" + config().secret;
 		var auth = process.env.COMMANDO_ALIAS + ":" + process.env.COMMANDO_SECRET;
 		console.log(auth);
 		var options = {
-			host: 'api.ipify.org',
+			host: 'api.commando.io',//'api.ipify.org',
 			port: 443,
-			path: '/?format=json',
+			path: '/v1',//'/?format=json',
+			auth: auth,
 			method: 'GET'
 		};
 		var request = https.request( options, callback);

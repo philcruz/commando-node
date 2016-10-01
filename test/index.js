@@ -20,22 +20,26 @@ describe('#config', function() {
 describe('#about', function() {
 
 	it('should get the API version', function(done) { // added "done" as parameter
-		console.log('about...');
+		console.log('test.about()');
 		assert.doesNotThrow(function() {
 			about(function(res) {
 				var body = '';
+				var ip = '';
 				res.on('data', function(chunk){
-					bode += chunk;
+					body += chunk;
 				});
 
 				res.on('end', function(){
-					var fbResponse = JSON.parse(body);
-					var version = Object.keys(fbResponse);
+					console.log('end...');
+					console.log(body);
+					var data = JSON.parse(body);
+					version = data.version;
 					console.log(version);
+					assert.equal(version, 'v1');
+					done();
 				});
-				var version = Object.keys(res);
-				assert.equal(version, '72.214.58.73'); // will not fail assert.doesNotThrow
-				done(); // call "done()" the parameter
+
+
 			}, done);
 		});
 	});

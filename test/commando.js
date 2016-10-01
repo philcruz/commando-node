@@ -3,6 +3,7 @@ var should = require('chai').should(),
 		commando = require('../lib/commando')('key','version'),
 		about = commando.about,
 		config = commando.config,
+		servers = commando.servers,
 		escape = commando.escape,
 		unescape = commando.unescape;
 
@@ -17,10 +18,21 @@ describe('#config', function() {
 
 });
 
+describe('#servers', function() {
+	it('gets the list of servers', function() {
+		servers.list().should.equal('servers');
+	});
+
+	it('gets the server info', function() {
+		servers.retrieve('foo').should.equal('foo');
+	});
+
+});
+
+
 describe('#about', function() {
 
-	it('should get the API version', function(done) { // added "done" as parameter
-		console.log('test.about()');
+	it('should get the API version', function(done) {
 		assert.doesNotThrow(function() {
 			about(function(res) {
 				var body = '';
@@ -30,11 +42,8 @@ describe('#about', function() {
 				});
 
 				res.on('end', function(){
-					console.log('end...');
-					console.log(body);
 					var data = JSON.parse(body);
 					version = data.version;
-					console.log(version);
 					assert.equal(version, 'v1');
 					done();
 				});

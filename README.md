@@ -7,7 +7,7 @@ A Commando.io API library for Node.js
 
 	npm install commando-node --save
 
-	## API Overview
+## API Overview
 
 	Every resource is accessed via your `commando` instance:
 

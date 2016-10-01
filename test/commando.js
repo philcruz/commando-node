@@ -19,8 +19,24 @@ describe('#config', function() {
 });
 
 describe('#servers', function() {
-	it('gets the list of servers', function() {
-		commando.servers.list().should.equal('servers');
+	
+	it('should get the servers', function(done) {
+		assert.doesNotThrow(function() {
+			commando.servers.list(function(res) {
+				var body = '';
+				res.on('data', function(chunk){
+					body += chunk;
+				});
+
+				res.on('end', function(){
+					console.log(body);
+					var data = JSON.parse(body);
+					assert.equal(data.length, 2);
+					done();
+				});
+
+			}, done);
+		});
 	});
 
 	it('gets the server info', function() {

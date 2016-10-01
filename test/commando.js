@@ -1,6 +1,6 @@
 var should = require('chai').should(),
 		assert = require('chai').assert,
-		commando = require('../index'),
+		commando = require('../lib/commando'),
 		about = commando.about,
 		config = commando.config,
 		escape = commando.escape,

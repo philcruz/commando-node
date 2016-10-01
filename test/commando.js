@@ -1,8 +1,9 @@
 'use strict';
 
+var testUtils = require('./testUtils');
 var should = require('chai').should();
 var	assert = require('chai').assert;
-var	commando = require('../lib/commando')('key','version');
+var	commando = require('../lib/commando')(testUtils.getCommandoSecret());
 var	escape = commando.escape;
 var	unescape = commando.unescape;
 

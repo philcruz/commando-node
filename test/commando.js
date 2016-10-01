@@ -19,7 +19,7 @@ describe('#config', function() {
 });
 
 describe('#servers', function() {
-	
+
 	it('should get the servers', function(done) {
 		assert.doesNotThrow(function() {
 			commando.servers.list(function(res) {
@@ -39,8 +39,27 @@ describe('#servers', function() {
 		});
 	});
 
+	it('should get the servers about', function(done) {
+		assert.doesNotThrow(function() {
+			commando.servers.about(function(res) {
+				var body = '';
+				res.on('data', function(chunk){
+					body += chunk;
+				});
+
+				res.on('end', function(){
+					console.log(body);
+					var data = JSON.parse(body);
+					assert.equal(data.version,'v1');
+					done();
+				});
+
+			}, done);
+		});
+	});
+
 	it('gets the server info', function() {
-		commando.servers.retrieve('foo').should.equal('foo');
+		commando.servers.list('foo').should.equal('api.commando.io');
 	});
 
 });

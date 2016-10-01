@@ -5,9 +5,11 @@
  * @return {String}
  */
 
+ process.env['API_HOST'] = 'api.commando.io'
+
  // If undefined in our process load our local file
  // (i.e. we aren't on an external server where we set these differently)
- if(!process.env.FOO) {
+ if(!process.env.COMMANDO_ALIAS) {
 	 var env = require('./config.js')
  }
 
@@ -28,7 +30,7 @@ module.exports = {
 		var auth = process.env.COMMANDO_ALIAS + ":" + process.env.COMMANDO_SECRET;
 		console.log(auth);
 		var options = {
-			host: 'api.commando.io',//'api.ipify.org',
+			host: process.env.API_HOST,//'api.commando.io',//'api.ipify.org',
 			port: 443,
 			path: '/v1',//'/?format=json',
 			auth: auth,

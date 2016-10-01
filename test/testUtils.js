@@ -8,9 +8,14 @@ require('mocha');
 
 var utils = module.exports = {
 
-	getCommandoSecret: function() {
-		var key = process.env.COMMANDO_SECRET || "your-secret-key";
-		return key;
+	getAlias: function() {
+		var alias = process.env.COMMANDO_ALIAS || "your-account-alias";
+		return alias;
+	},
+
+	getSecret: function() {
+		var secret = process.env.COMMANDO_SECRET || "your-secret-key";
+		return secret;
 	},
 
 

@@ -58,6 +58,48 @@ describe('#servers', function() {
 
 });
 
+describe('#groups', function() {
+
+	it('should get the groups', function(done) {
+		assert.doesNotThrow(function() {
+			commando.groups.list(function(res) {
+				var body = '';
+				res.on('data', function(chunk){
+					body += chunk;
+				});
+
+				res.on('end', function(){
+					//console.log(body);
+					var data = JSON.parse(body);
+					assert.equal(data.length, 1);
+					done();
+				});
+
+			}, done);
+		});
+	});
+
+	it('should get the group info', function(done) {
+		assert.doesNotThrow(function() {
+			commando.groups.retrieve('grp_GDI6t57daf0b5ae5dd168', function(res) {
+				var body = '';
+				res.on('data', function(chunk){
+					body += chunk;
+				});
+
+				res.on('end', function(){
+					//console.log(body);
+					var data = JSON.parse(body);
+					assert.equal(data.name,'PROD');
+					done();
+				});
+
+			}, done);
+		});
+	});
+
+});
+
 describe('#about', function() {
 
 	it('should get the API version', function(done) {

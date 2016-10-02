@@ -100,6 +100,49 @@ describe('#groups', function() {
 
 });
 
+describe('#recipes', function() {
+
+	it('should get the recipes', function(done) {
+		assert.doesNotThrow(function() {
+			commando.recipes.list(function(res) {
+				var body = '';
+				res.on('data', function(chunk){
+					body += chunk;
+				});
+
+				res.on('end', function(){
+					//console.log(body);
+					var data = JSON.parse(body);
+					assert.equal(data.length, 8);
+					done();
+				});
+
+			}, done);
+		});
+	});
+
+	it('should get the recipe info', function(done) {
+		assert.doesNotThrow(function() {
+			commando.recipes.retrieve('rec_7hgCk57db09ddc13f0gbx', function(res) {
+				var body = '';
+				res.on('data', function(chunk){
+					body += chunk;
+				});
+
+				res.on('end', function(){
+					//console.log(body);
+					var data = JSON.parse(body);
+					assert.equal(data.name,'RESTART-CF');
+					done();
+				});
+
+			}, done);
+		});
+	});
+
+});
+
+
 describe('#about', function() {
 
 	it('should get the API version', function(done) {

@@ -142,6 +142,47 @@ describe('#recipes', function() {
 
 });
 
+describe('#execution-queue', function() {
+
+	it('should get the execution-queue', function(done) {
+		assert.doesNotThrow(function() {
+			commando.executionQueue.list(function(res) {
+				var body = '';
+				res.on('data', function(chunk){
+					body += chunk;
+				});
+
+				res.on('end', function(){
+					//console.log(body);
+					var data = JSON.parse(body);
+					assert.equal(data.length, 1);
+					done();
+				});
+
+			}, done);
+		});
+	});
+
+	it('should get the execution-queue info', function(done) {
+		assert.doesNotThrow(function() {
+			commando.executionQueue.retrieve('57db6511179db941208b456f', function(res) {
+				var body = '';
+				res.on('data', function(chunk){
+					body += chunk;
+				});
+
+				res.on('end', function(){
+					//console.log(body);
+					var data = JSON.parse(body);
+					assert.equal(data.url,'/v1/execution-queue/57db6511179db941208b456f');
+					done();
+				});
+
+			}, done);
+		});
+	});
+
+});
 
 describe('#about', function() {
 

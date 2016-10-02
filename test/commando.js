@@ -212,6 +212,17 @@ describe('#about', function() {
 
 	it('should get the API version', function(done) {
 		assert.doesNotThrow(function() {
+			commando.about(function(data) {
+				console.log(data)
+				assert.equal(data.version, 'v1');
+				done();
+			});
+		});
+	});
+
+
+	/*it('should get the API version', function(done) {
+		assert.doesNotThrow(function() {
 			commando.about(function(res) {
 				var body = '';
 				res.on('data', function(chunk){
@@ -227,7 +238,7 @@ describe('#about', function() {
 
 			}, done);
 		});
-	});
+	});*/
 
 });
 

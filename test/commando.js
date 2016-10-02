@@ -18,41 +18,24 @@ describe('#config', function() {
 
 describe('#servers', function() {
 
-	it('should get all servers', function(done) {
+
+	it('should get the all servers', function(done) {
 		assert.doesNotThrow(function() {
-			commando.servers.list(function(res) {
-				var body = '';
-				res.on('data', function(chunk){
-					body += chunk;
-				});
-
-				res.on('end', function(){
-					//console.log(body);
-					var data = JSON.parse(body);
-					assert.equal(data.length, 2);
-					done();
-				});
-
-			}, done);
+			commando.servers.list(function(data) {
+				//console.log(data)
+				assert.equal(data.length, 2);
+				done();
+			});
 		});
 	});
 
 	it('should get a server by id', function(done) {
 		assert.doesNotThrow(function() {
-			commando.servers.retrieve('srv_2vhZl57daf0e630261sHn', function(res) {
-				var body = '';
-				res.on('data', function(chunk){
-					body += chunk;
-				});
-
-				res.on('end', function(){
-					//console.log(body);
-					var data = JSON.parse(body);
-					assert.equal(data.label,'WEB1');
-					done();
-				});
-
-			}, done);
+			commando.servers.retrieve('srv_2vhZl57daf0e630261sHn', function(data) {
+				//console.log(data);
+				assert.equal(data.label, "WEB1");
+				done();
+			});
 		});
 	});
 
@@ -62,39 +45,19 @@ describe('#groups', function() {
 
 	it('should get all groups', function(done) {
 		assert.doesNotThrow(function() {
-			commando.groups.list(function(res) {
-				var body = '';
-				res.on('data', function(chunk){
-					body += chunk;
-				});
-
-				res.on('end', function(){
-					//console.log(body);
-					var data = JSON.parse(body);
-					assert.equal(data.length, 1);
-					done();
-				});
-
-			}, done);
+			commando.groups.list(function(data) {
+				assert.equal(data.length,1);
+				done();
+			});
 		});
 	});
 
 	it('should get a group by id', function(done) {
 		assert.doesNotThrow(function() {
-			commando.groups.retrieve('grp_GDI6t57daf0b5ae5dd168', function(res) {
-				var body = '';
-				res.on('data', function(chunk){
-					body += chunk;
-				});
-
-				res.on('end', function(){
-					//console.log(body);
-					var data = JSON.parse(body);
-					assert.equal(data.name,'PROD');
-					done();
-				});
-
-			}, done);
+			commando.groups.retrieve('grp_GDI6t57daf0b5ae5dd168', function(data) {
+				assert.equal(data.name,'PROD');
+				done();
+			});
 		});
 	});
 
@@ -104,39 +67,19 @@ describe('#recipes', function() {
 
 	it('should get all recipes', function(done) {
 		assert.doesNotThrow(function() {
-			commando.recipes.list(function(res) {
-				var body = '';
-				res.on('data', function(chunk){
-					body += chunk;
-				});
-
-				res.on('end', function(){
-					//console.log(body);
-					var data = JSON.parse(body);
-					assert.equal(data.length, 8);
-					done();
-				});
-
-			}, done);
+			commando.recipes.list(function(data) {
+				assert.equal(data.length, 8);
+				done();
+			});
 		});
 	});
 
 	it('should get a recipe by id', function(done) {
 		assert.doesNotThrow(function() {
-			commando.recipes.retrieve('rec_7hgCk57db09ddc13f0gbx', function(res) {
-				var body = '';
-				res.on('data', function(chunk){
-					body += chunk;
-				});
-
-				res.on('end', function(){
-					//console.log(body);
-					var data = JSON.parse(body);
-					assert.equal(data.name,'RESTART-CF');
-					done();
-				});
-
-			}, done);
+			commando.recipes.retrieve('rec_7hgCk57db09ddc13f0gbx', function(data) {
+				assert.equal(data.name,'RESTART-CF');
+				done();
+			});
 		});
 	});
 
@@ -146,39 +89,19 @@ describe('#execution-queue', function() {
 
 	it('should get all in the execution-queue', function(done) {
 		assert.doesNotThrow(function() {
-			commando.executionQueue.list(function(res) {
-				var body = '';
-				res.on('data', function(chunk){
-					body += chunk;
-				});
-
-				res.on('end', function(){
-					//console.log(body);
-					var data = JSON.parse(body);
-					assert.equal(data.length, 1);
-					done();
-				});
-
-			}, done);
+			commando.executionQueue.list(function(data) {
+				assert.equal(data.length, 1);
+				done();
+			});
 		});
 	});
 
 	it('should get an execution-queue by id', function(done) {
 		assert.doesNotThrow(function() {
-			commando.executionQueue.retrieve('57db6511179db941208b456f', function(res) {
-				var body = '';
-				res.on('data', function(chunk){
-					body += chunk;
-				});
-
-				res.on('end', function(){
-					//console.log(body);
-					var data = JSON.parse(body);
-					assert.equal(data.url,'/v1/execution-queue/57db6511179db941208b456f');
-					done();
-				});
-
-			}, done);
+			commando.executionQueue.retrieve('57db6511179db941208b456f', function(data) {
+				assert.equal(data.url,'/v1/execution-queue/57db6511179db941208b456f');
+				done();
+			});
 		});
 	});
 
@@ -188,20 +111,10 @@ describe('#executions', function() {
 
 	it('should get an execution by id', function(done) {
 		assert.doesNotThrow(function() {
-			commando.executionQueue.retrieve('57db6511179db941208b456f', function(res) {
-				var body = '';
-				res.on('data', function(chunk){
-					body += chunk;
-				});
-
-				res.on('end', function(){
-					//console.log(body);
-					var data = JSON.parse(body);
-					assert.equal(data.url,'/v1/execution-queue/57db6511179db941208b456f');
-					done();
-				});
-
-			}, done);
+			commando.executionQueue.retrieve('57db6511179db941208b456f', function(data) {
+				assert.equal(data.url,'/v1/execution-queue/57db6511179db941208b456f');
+				done();
+			});
 		});
 	});
 
@@ -213,7 +126,7 @@ describe('#about', function() {
 	it('should get the API version', function(done) {
 		assert.doesNotThrow(function() {
 			commando.about(function(data) {
-				console.log(data)
+				//console.log(data)
 				assert.equal(data.version, 'v1');
 				done();
 			});
